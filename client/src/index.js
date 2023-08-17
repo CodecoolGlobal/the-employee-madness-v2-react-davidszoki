@@ -30,6 +30,10 @@ const router = createBrowserRouter([
         element: <EmployeeList path="/first"/>,
       },
       {
+        path: "/last",
+        element: <EmployeeList path="/last"/>,
+      },
+      {
         path: "/create",
         element: <EmployeeCreator />,
       },

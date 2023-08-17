@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const EmployeeModel = require("./db/employee.model");
 const cors = require('cors')
 
-
 const { MONGO_URL, PORT = 8080 } = process.env;
 
 if (!MONGO_URL) {
@@ -16,12 +15,9 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
-//Sort by First name
-app.get("/api/sortFirstName", async(req,res) => {
-  const mongooseSort = await EmployeeModel.find().sort({name:1})
-  // console.log(mongooseSort);
-  res.json(mongooseSort)
-})
+//Sort by task in this route
+const firstName = require("./routes/arregment")
+app.use("/search", firstName)
 
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });
