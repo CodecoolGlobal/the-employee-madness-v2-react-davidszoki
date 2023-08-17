@@ -16,6 +16,13 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
+//Sort by First name
+app.get("/api/sortFirstName", async(req,res) => {
+  const mongooseSort = await EmployeeModel.find().sort({name:1})
+  // console.log(mongooseSort);
+  res.json(mongooseSort)
+})
+
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });
   return res.json(employees);

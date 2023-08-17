@@ -23,7 +23,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <EmployeeList />,
+        element: <EmployeeList path="/"/>,
+      },
+      {
+        path: "/first",
+        element: <EmployeeList path="/first"/>,
       },
       {
         path: "/create",
