@@ -8,8 +8,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import EmployeeList from "./Pages/EmployeeList";
 import EmployeeCreator from "./Pages/EmployeeCreator";
 import EmployeeUpdater from "./Pages/EmployeeUpdater";
-import Level from "./Pages/SearchFields/Level";
-import Positions from "./Pages/SearchFields/Positions";
+import SearchField from "./Pages/SearchFields/SearchField"
+
 
 import "./index.css";
 import TableTest from "./Pages/TableTest";
@@ -42,13 +42,9 @@ const router = createBrowserRouter([
         element: <FormTest />,
       },
       {
-        path: "/level",
-        element: <Level />,
+        path: "/search",
+        element: <SearchField />,
       },
-      {
-        path: "/position",
-        element: <Positions />,
-      }
     ],
   },
 ]);

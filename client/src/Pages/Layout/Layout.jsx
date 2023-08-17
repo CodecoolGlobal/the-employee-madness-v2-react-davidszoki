@@ -1,19 +1,22 @@
 import { Outlet, Link } from "react-router-dom";
+import React, { useState } from 'react';
 
 import "./Layout.css";
 
-const Layout = () => (
+function Layout () {
+  const [searchValue, setSearchValeu] = useState("")
+  console.log(searchValue);
+  return (
   <div className="Layout">
     <nav>
       <ul>
         <li className="grow">
           <Link to="/">Employees</Link>
         </li>
-        <li>
-          <Link to="/level">Search by Level</Link>
-        </li>
-        <li>
-          <Link to="/position">Search by Position</Link>
+        <li className="search-container">
+          <input type="text" placeholder='Type to search...' className="search-input" 
+          value={searchValue} onChange={e=>setSearchValeu(e.target.value)}/>
+          <Link to="/search" state={searchValue}><button className="search-button">Search</button></Link>
         </li>
         <li>
           <Link to="/create">
@@ -24,6 +27,6 @@ const Layout = () => (
     </nav>
     <Outlet />
   </div>
-);
+)}
 
 export default Layout;
