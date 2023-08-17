@@ -16,7 +16,7 @@ function Layout () {
         <li className="search-container">
           <input type="text" placeholder='Type to search...' className="search-input" 
           value={searchValue} onChange={e=>setSearchValeu(e.target.value)}/>
-          <Link to="/search" state={searchValue}><button className="search-button">Search</button></Link>
+          <Link to={`/search/${searchValue}`}><button className="search-button">Search</button></Link>
         </li>
         <li>
           <Link to="/create">

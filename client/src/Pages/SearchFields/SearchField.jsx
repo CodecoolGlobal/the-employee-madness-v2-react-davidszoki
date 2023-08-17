@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './search.css'
 import EmployeeTable from "../../Components/EmployeeTable";
 
-function Search({searchValue}) {
-
-    console.log(searchValue);
+function Search(searchValue) {
+    fetch(`/search/${searchValue}`).then(data => console.log(data))
 
     const [employees, setEmployees] = useState([]);
     
@@ -13,7 +12,7 @@ function Search({searchValue}) {
         return employees.filter(dat => dat.level.toLowerCase().includes(searchValue.toLowerCase()));
     }    
 
-    const fetchLevel = () => {
+    function fetchEmployees() {
         fetch("http://localhost:8080/api/employees/").then(res => res.json())
             .then(data => {
                 setEmployees(data)
@@ -21,7 +20,7 @@ function Search({searchValue}) {
     }
 
     useEffect(()=>{
-        fetchLevel()
+        fetchEmployees()
     }, [])
 
     return (
