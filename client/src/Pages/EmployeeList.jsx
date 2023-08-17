@@ -31,19 +31,24 @@ const EmployeeList = ({ path }) => {
         setLoading(false);
         setEmployees(employees);
       })
+
+    //Sample arregment method for the simple search the index.js contain the choldren path element that is return here props
     let url
     switch (path) {
       case '/first':
         url = "/api/sortFirstName"
         break;
-      // case '/list':
-      //     component = <CoctailList/>
+      // case '/last':
+      // url=""    
       //     break;
-      // case '/about':
-      //     component = <AboutUs/>
+      // case '/middle':
+      // url=""
       //     break;
-      // case '/favourites':
-      //     component = <Favourites/>
+      // case '/level':
+      // url=""
+      //     break;
+      // case '/position':
+      // url=""
       //     break;
     }
 
