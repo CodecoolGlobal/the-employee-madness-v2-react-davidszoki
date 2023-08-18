@@ -32,7 +32,7 @@ const EmployeeList = ({ path }) => {
         setEmployees(employees);
       })
 
-    //Sample arregment method for the simple search the index.js contain the choldren path element that is return here props
+    //Sample arregment method for the simple search the index.js contain the children path element that is return here props
     let url
     switch (path) {
       case '/first':
@@ -40,16 +40,13 @@ const EmployeeList = ({ path }) => {
         break;
       case '/last':
         url = "/search/sortLastName"
-      //     break;
-      // case '/middle':
-      // url=""
-      //     break;
-      // case '/level':
-      // url=""
-      //     break;
-      // case '/position':
-      // url=""
-      //     break;
+        break;
+      case '/level':
+        url = "/search/level"
+        break;
+      case '/position':
+      url="/search/position"
+          break;
     }
 
     fetch(url).then(res => res.json()).then(data => setEmployees(data))

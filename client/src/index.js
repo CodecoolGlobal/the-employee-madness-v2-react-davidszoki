@@ -34,6 +34,14 @@ const router = createBrowserRouter([
         element: <EmployeeList path="/last"/>,
       },
       {
+        path: "/level",
+        element: <EmployeeList path="/level"/>,
+      },
+      {
+        path: "/position",
+        element: <EmployeeList path="/position"/>,
+      },
+      {
         path: "/create",
         element: <EmployeeCreator />,
       },

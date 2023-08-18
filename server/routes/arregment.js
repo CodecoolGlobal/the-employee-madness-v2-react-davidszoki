@@ -19,4 +19,14 @@ router.get("/sortLastName", async (req, res) => {
     res.json(sortEmployeLastName)
 })
 
+router.get("/level", async (req, res) => {
+    const level = await EmployeeModel.find().sort({level: "asc"})
+    res.json(level)
+})
+
+router.get("/position", async (req, res) => {
+    const level = await EmployeeModel.find().sort({position: "asc"})
+    res.json(level)
+})
+
 module.exports = router
