@@ -36,16 +36,16 @@ const EmployeeList = ({ path }) => {
     let url
     switch (path) {
       case '/first':
-        url = "/search/sortFirstName"
+        url = "/arregement/sortFirstName"
         break;
       case '/last':
-        url = "/search/sortLastName"
+        url = "/arregement/sortLastName"
         break;
       case '/level':
-        url = "/search/level"
+        url = "/arregement/level"
         break;
       case '/position':
-      url="/search/position"
+      url="/arregement/position"
           break;
     }
 

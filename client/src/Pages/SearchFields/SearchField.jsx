@@ -3,12 +3,11 @@ import  {useLocation} from "react-router-dom"
 import './search.css'
 import EmployeeTable from "../../Components/EmployeeTable";
 
-function Search({props}) {
+function Search() {
     // const location = useLocation();
     // const data = location.state?.searchValue;
     // console.log(data);
-    // console.log(searchValue.location);
-    console.log(props); 
+    // console.log(searchValue.location); 
 
     // fetch(`/search/${searchValue}`).then(data => console.log(data))
 

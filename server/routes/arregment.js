@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const EmployeeModel = require("../db/employee.model");
 
+//Navbar arregment for the tasks
 router.get("/sortFirstName", async (req, res) => {
     const sortFirstName = await EmployeeModel.find().sort({ name: 1 })
     // console.log(mongooseSort);

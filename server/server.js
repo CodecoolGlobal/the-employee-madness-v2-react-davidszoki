@@ -16,8 +16,11 @@ app.use(cors())
 app.use(express.json());
 
 //Sort by task in this route
-const firstName = require("./routes/arregment")
-app.use("/search", firstName)
+const arregment = require("./routes/arregment")
+app.use("/arregement", arregment)
+
+const search = require("./routes/search")
+app.use("/search", search)
 
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });

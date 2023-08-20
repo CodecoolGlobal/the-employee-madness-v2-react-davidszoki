@@ -22,13 +22,13 @@ function Navbar() {
                     </a>
                 </li>
                 <li>
-                    <a href='/position' >
-                        Position
+                    <a href='/level' >
+                        Level
                     </a>
                 </li>
                 <li>
-                    <a href='/level' >
-                        Level
+                    <a href='/position' >
+                        Position
                     </a>
                 </li>
             </ul>

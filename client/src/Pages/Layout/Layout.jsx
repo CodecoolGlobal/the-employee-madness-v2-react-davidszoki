@@ -1,9 +1,10 @@
 import { Outlet, Link } from "react-router-dom";
-import React, { useState } from 'react';
-
+import React, { useState } from 'react'
 import "./Layout.css";
 
-function Layout ({searchButton}) {
+function Layout () {
+  const [searchValue, setSearchValeu] = useState("")
+  console.log(searchValue);
   return (
   <div className="Layout">
     <nav>
@@ -11,22 +12,27 @@ function Layout ({searchButton}) {
         <li className="grow">
           <Link to="/">Employees</Link>
         </li>
+
+
         <li className="search-container">
           <input type="text" placeholder='Type to search...' className="search-input" 
-          value={searchButton} onChange={e => searchButton(e.target.value)}/>
+          value={searchValue} onChange={e => setSearchValeu(e.target.value)}/>
           {/* <Link to={{
             pathname:"/searchBar",
             state:{searchValue}
           }}><button className="search-button">Search</button></Link> */}
           {/* <Link to="/searchBar" state={{searchValue:searchValue}}><button className="search-button">Search</button></Link> */}
-          {/* <Link to={`/search/${searchValue}`}><button className="search-button">Search</button></Link> */}
+          <Link to={`/search/${encodeURIComponent(searchValue)}`}><button className="search-button">Search</button></Link>
           {/* <Link to="/searchBar"><button className="search-button">Search</button></Link> */}
         </li>
+
+
         <li>
           <Link to="/create">
             <button type="button">Create Employee</button>
           </Link>
         </li>
+
       </ul>
     </nav>
     <Outlet />
