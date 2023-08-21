@@ -20,9 +20,12 @@ function readName(nam) {
     console.log(name)
 }
 
+const test = "Superhero"
+readLevel(test)
+
 // Searchbar fetch
 search.get("/:id", async (req, res)=>{
-    const elem = req.params.id;
+    const elem = "Junior"
 
     if (readLevel(elem)) {  
         const searchLevel = await EmployeeModel.find({level:elem})

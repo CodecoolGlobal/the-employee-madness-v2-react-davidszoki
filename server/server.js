@@ -19,9 +19,12 @@ app.use(express.json());
 const arregment = require("./routes/arregment")
 app.use("/arregement", arregment)
 
+//Search fetch
 const search = require("./routes/search")
 app.use("/search", search)
 
+
+//Starter code
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });
   return res.json(employees);

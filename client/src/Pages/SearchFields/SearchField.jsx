@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import  {useLocation} from "react-router-dom"
+import  {useParams} from "react-router-dom"
 import './search.css'
 import EmployeeTable from "../../Components/EmployeeTable";
 
 function Search() {
-    // const location = useLocation();
+    const {id} = useParams();
+    console.log("test");
     // const data = location.state?.searchValue;
     // console.log(data);
     // console.log(searchValue.location); 
@@ -18,22 +19,22 @@ function Search() {
     //     return employees.filter(dat => dat.level.toLowerCase().includes(searchValue.toLowerCase()));
     // }    
 
-    // function fetchEmployees() {
-    //     fetch("http://localhost:8080/api/employees/").then(res => res.json())
-    //         .then(data => {
-    //             setEmployees(data)
-    //         })
-    // }
+    function fetchEmployees() {
+        fetch(`http://localhost:8080/search/${id}`).then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
 
-    // useEffect(()=>{
-    //     fetchEmployees()
-    // }, [])
+    useEffect(()=>{
+        fetchEmployees()
+    }, [])
 
-    // return (
-    //     <div className='all'>
-    //         <EmployeeTable employees={filterEmployes(employees, searchValue)} />
-    //     </div>
-    // )
+    return (
+        <div className='all'>
+            <EmployeeTable />
+        </div>
+    )
 }
 
 export default Search
