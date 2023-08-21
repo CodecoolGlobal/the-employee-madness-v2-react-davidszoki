@@ -17,11 +17,6 @@ function Navbar() {
                     </a>
                 </li>
                 <li>
-                    <a href='/middle' >
-                        Middle name
-                    </a>
-                </li>
-                <li>
                     <a href='/level' >
                         Level
                     </a>

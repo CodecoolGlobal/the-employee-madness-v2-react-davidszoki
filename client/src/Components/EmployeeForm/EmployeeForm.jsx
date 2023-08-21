@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
+const EmployeeForm = ({ onSave, disabled, employee, equipment, onCancel }) => {
   const [name, setName] = useState(employee?.name ?? "");
   const [level, setLevel] = useState(employee?.level ?? "");
   const [position, setPosition] = useState(employee?.position ?? "");
-  const [equipmentName, setEquipmentName] = useState(employee?.equipment.name ?? "");
-  const [type, setType] = useState(employee?.equipment.type ?? "");
-  const [amount, setAmount] = useState(employee?.equipment.amount ?? "");
+  const [equipmentName, setEquipmentName] = useState(equipment?.name ?? "")
+
   
 
   const onSubmit = (e) => {
@@ -18,9 +17,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
         name,
         level,
         position,
-        equipmentName,
-        type,
-        amount
+        ...equipment,
+        equipmentName
       });
     }
 
@@ -28,9 +26,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
       name,
       level,
       position,
-      equipmentName,
-      type,
-      amount
+      equipment,
+      equipmentName
     });
   };
 
@@ -69,27 +66,13 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 
       {/* Add the equipmentName for the person */}
       <div className="control">
-        <label htmlFor="equipmentName">equipmentName:</label>
+        <label htmlFor="equipment">Equipment:</label>
         <input
           placeholder="name"
-          value={equipmentName}
+          value={equipment}
           onChange={(e) => setEquipmentName(e.target.value)}
-          name="equipmentName"
-          id="equipmentName"
-        />
-        <input
-          placeholder="type"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          name="type"
-          id="type"
-        />
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          name="amount"
-          id="amount"
+          name="equipment"
+          id="equipment"
         />
       </div>
 

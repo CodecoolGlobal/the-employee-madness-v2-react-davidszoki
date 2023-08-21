@@ -26,3 +26,15 @@ Content-Type:  application/json
   "type": "condenser",
   "amount": 1
 }
+
+
+###
+//Equipment database test
+POST http://localhost:8080/api/equipment/
+Content-Type: application/json
+
+{
+  "name": "Glock9",
+  "type": "Gun",
+  "amount": 10
+}

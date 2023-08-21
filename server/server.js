@@ -2,7 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const EmployeeModel = require("./db/employee.model");
-const cors = require('cors')
+const EquipmentModel = require("./db/equipment.model")
+const cors = require('cors');
 
 const { MONGO_URL, PORT = 8080 } = process.env;
 
@@ -12,7 +13,7 @@ if (!MONGO_URL) {
 }
 
 const app = express();
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
 //Sort by task in this route
@@ -35,11 +36,24 @@ app.get("/api/employees/:id", async (req, res) => {
   return res.json(employee);
 });
 
+//Post method employee
 app.post("/api/employees/", async (req, res, next) => {
   const employee = req.body;
 
   try {
     const saved = await EmployeeModel.create(employee);
+    return res.json(saved);
+  } catch (err) {
+    return next(err);
+  }
+});
+
+//Post method equipment
+app.post("/api/equipment/", async (req, res, next) => {
+  const equipment = req.body;
+
+  try {
+    const saved = await EquipmentModel.create(equipment);
     return res.json(saved);
   } catch (err) {
     return next(err);

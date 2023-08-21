@@ -2,21 +2,34 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmployeeForm from "../Components/EmployeeForm";
 
+//Employee Method creation
 const createEmployee = (employee) => {
-  return fetch("/api/employees", {
-    method: "POST",
-    headers: {
+return fetch("/api/employees", {
+  method: "POST",
+  headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(employee),
   }).then((res) => res.json());
 };
 
+//Equipment method creation
+const createEquipment = (equipment) => {
+  return fetch("/api/equipment/", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(equipment),
+    }).then((res) => res.json());
+  };
+  
+
 const EmployeeCreator = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const handleCreateEmployee = (employee) => {
+  const handleCreateEmployee = (employee, equipment) => {
     setLoading(true);
 
     createEmployee(employee)
@@ -24,6 +37,12 @@ const EmployeeCreator = () => {
         setLoading(false);
         navigate("/");
       })
+
+    createEquipment(equipment)
+    .then(()=>{
+      setLoading(false);
+      navigate("/")
+    })
   };
 
   return (
