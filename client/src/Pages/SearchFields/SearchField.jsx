@@ -17,7 +17,7 @@ function Search() {
                 }).catch(err => console.error(err))
         }
         fetchEmployees();
-    }, [])
+    }, [id]) // Include the Id for this array 
 
     return (
         <div className='all'>

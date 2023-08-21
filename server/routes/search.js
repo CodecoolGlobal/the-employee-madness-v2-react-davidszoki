@@ -17,15 +17,13 @@ function readPosition(pos) {
     return position;
 }
 function readName(nam) {
-    const names = fs.readFileSync("./populate/names.json", encoding='utf8');
-    const name = names.includes(nam)
-    //foreach és egyezést nézni majd boolváltozó és utána azt megváltoztatni
-    // console.log(name)
+    const names = JSON.parse(fs.readFileSync("./populate/names.json", 'utf8'));
+    const name = names.filter(name => name.includes(nam))
     return name;
 }
 
-const test = "Superhero"
-readLevel(test)
+// const test2 = "Robert"
+// console.log(readName(test2))
 
 // Searchbar fetch
 search.get("/:id", async (req, res)=>{
@@ -40,7 +38,8 @@ search.get("/:id", async (req, res)=>{
         return res.json(searchPosition)
 
     } else if(readName(elem)){
-        const searchName = await EmployeeModel.find({name:elem})
+        // Figyelni hogy mit ad vissza, mert az elem az nem szűretlen rész a függvény nélkül
+        const searchName = await EmployeeModel.find({name:readName(elem)})
         return res.json(searchName)
 
     } else{
