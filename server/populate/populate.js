@@ -6,7 +6,9 @@ const mongoose = require("mongoose");
 const names = require("./names.json");
 const levels = require("./levels.json");
 const positions = require("./positions.json");
+const brands = require("./brand.json");
 const EmployeeModel = require("../db/employee.model");
+const FavBrands = require("../db/brand.model")
 
 const mongoUrl = process.env.MONGO_URL;
 
@@ -24,16 +26,29 @@ const populateEmployees = async () => {
     name,
     level: pick(levels),
     position: pick(positions),
+    brand: pick(brands) // ez nem igen jó {name:pick(brands)} helyette object Id alapu referencia
   }));
 
   await EmployeeModel.create(...employees);
   console.log("Employees created");
 };
 
+const favBrandsEmployees = async () => {
+  await FavBrands.deleteMany({});
+
+  const favBrand = brands.map((brand) => ({
+    name: brand
+  }))
+
+  await FavBrands.create(...favBrand) 
+}
+
 const main = async () => {
   await mongoose.connect(mongoUrl);
 
   await populateEmployees();
+  await favBrandsEmployees();
+
 
   await mongoose.disconnect();
 };

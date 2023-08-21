@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const EmployeeForm = ({ onSave, disabled, employee, equipment, onCancel }) => {
+const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [name, setName] = useState(employee?.name ?? "");
   const [level, setLevel] = useState(employee?.level ?? "");
   const [position, setPosition] = useState(employee?.position ?? "");
-  const [equipmentName, setEquipmentName] = useState(equipment?.name ?? "")
+  const [favBrand, setFavBrand] = useState(employee?.brand.name ?? "")
 
   
 
@@ -17,8 +17,7 @@ const EmployeeForm = ({ onSave, disabled, employee, equipment, onCancel }) => {
         name,
         level,
         position,
-        ...equipment,
-        equipmentName
+        favBrand
       });
     }
 
@@ -26,8 +25,7 @@ const EmployeeForm = ({ onSave, disabled, employee, equipment, onCancel }) => {
       name,
       level,
       position,
-      equipment,
-      equipmentName
+      favBrand
     });
   };
 
@@ -64,15 +62,14 @@ const EmployeeForm = ({ onSave, disabled, employee, equipment, onCancel }) => {
       </div>
 
 
-      {/* Add the equipmentName for the person */}
+      {/* Add the Favourite Brand for the person */}
       <div className="control">
-        <label htmlFor="equipment">Equipment:</label>
+        <label htmlFor="favBrand">Favourite Brand:</label>
         <input
-          placeholder="name"
-          value={equipment}
-          onChange={(e) => setEquipmentName(e.target.value)}
-          name="equipment"
-          id="equipment"
+          value={favBrand}
+          onChange={(e) => setFavBrand(e.target.value)}
+          name="favBrand"
+          id="favBrand"
         />
       </div>
 

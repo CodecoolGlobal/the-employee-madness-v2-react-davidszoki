@@ -73,10 +73,23 @@ app.patch("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+
+//Delete method for employee
 app.delete("/api/employees/:id", async (req, res, next) => {
   try {
     const employee = await EmployeeModel.findById(req.params.id);
     const deleted = await employee.delete();
+    return res.json(deleted);
+  } catch (err) {
+    return next(err);
+  }
+});
+
+//Delete method for equipment
+app.delete("/api/equipment/:id", async (req, res, next) => {
+  try {
+    const equipment = await EquipmentModel.findById(req.params.id);
+    const deleted = await equipment.delete();
     return res.json(deleted);
   } catch (err) {
     return next(err);

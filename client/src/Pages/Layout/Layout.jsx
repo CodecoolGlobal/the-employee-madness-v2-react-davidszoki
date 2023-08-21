@@ -12,27 +12,16 @@ function Layout () {
         <li className="grow">
           <Link to="/">Employees</Link>
         </li>
-
-
         <li className="search-container">
           <input type="text" placeholder='Type to search...' className="search-input" 
           value={searchValue} onChange={e => setSearchValeu(e.target.value)}/>
-          {/* <Link to={{
-            pathname:"/searchBar",
-            state:{searchValue}
-          }}><button className="search-button">Search</button></Link> */}
-          {/* <Link to="/searchBar" state={{searchValue:searchValue}}><button className="search-button">Search</button></Link> */}
           <Link to={`/search/${encodeURIComponent(searchValue)}`}><button className="search-button">Search</button></Link>
-          {/* <Link to="/searchBar"><button className="search-button">Search</button></Link> */}
         </li>
-
-
         <li>
           <Link to="/create">
             <button type="button">Create Employee</button>
           </Link>
         </li>
-
       </ul>
     </nav>
     <Outlet />

@@ -22,9 +22,6 @@ Content-Type:  application/json
   "name": "Jack Reacher",
   "level":"Medior",
   "position":"Superhero",
-  "name": "Microphone",
-  "type": "condenser",
-  "amount": 1
 }
 
 
