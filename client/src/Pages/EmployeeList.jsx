@@ -35,6 +35,11 @@ const EmployeeList = ({ path }) => {
     //Sample arregment method for the simple search the index.js contain the children path element that is return here props
     let url
     switch (path) {
+      // Ez volt az elő hiba kódja, ez hiányzott
+      case '/':
+        url = '/api/employees/'
+        break;
+      //-------------------
       case '/first':
         url = "/arregement/sortFirstName"
         break;
