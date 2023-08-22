@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const EmployeeModel = require("./db/employee.model");
 const EquipmentModel = require("./db/equipment.model")
+const FavBrands = require("./db/brand.model")
 const cors = require('cors');
 
 const { MONGO_URL, PORT = 8080 } = process.env;
@@ -29,6 +30,11 @@ app.use("/search", search)
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" });
   return res.json(employees);
+});
+
+app.get("/api/brand", async (req, res) => {
+  const brand = await FavBrands.find().sort({ created: "desc" });
+  return res.json(brand);
 });
 
 app.get("/api/employees/:id", async (req, res) => {

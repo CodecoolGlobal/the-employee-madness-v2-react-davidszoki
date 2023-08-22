@@ -21,34 +21,51 @@ const pick = (from) => from[Math.floor(Math.random() * (from.length - 0))];
 
 const populateEmployees = async () => {
   await EmployeeModel.deleteMany({});
+  await favBrandsEmployees();
 
   const employees = names.map((name) => ({
     name,
     level: pick(levels),
     position: pick(positions),
-    brand: pick(brands) // ez nem igen jó {name:pick(brands)} helyette object Id alapu referencia
+    brand: pick(brands) // This should be an ObjectId reference, not just a brand name
   }));
 
-  await EmployeeModel.create(...employees);
   console.log("Employees created");
+
+  await Promise.all(
+    employees.map(async (employee) => {
+      try {
+        const favBrand = await FavBrands.findOne({ name: employee.brand });
+        if (favBrand) {
+          employee.brand = favBrand._id; // name-t nem fogadja el valamiért
+        } else {
+          console.log(`Brand not found: ${employee.brand}`);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    })
+  );
+
+  await EmployeeModel.create(...employees);
+  console.log("Employees created with favbrands");
 };
 
 const favBrandsEmployees = async () => {
   await FavBrands.deleteMany({});
 
-  const favBrand = brands.map((brand) => ({
-    name: brand
+  const favBrand = brands.map((brandName) => ({
+    name: brandName
   }))
 
-  await FavBrands.create(...favBrand) 
+  await FavBrands.create(...favBrand)
+  console.log("favBrand Added");
 }
 
 const main = async () => {
   await mongoose.connect(mongoUrl);
 
   await populateEmployees();
-  await favBrandsEmployees();
-
 
   await mongoose.disconnect();
 };

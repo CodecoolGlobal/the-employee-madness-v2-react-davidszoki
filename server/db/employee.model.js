@@ -1,6 +1,6 @@
 // https://mongoosejs.com/
 const mongoose = require("mongoose");
-const favBrand = require("./brand.model").schema
+const Brand = require("./brand.model")
 const { Schema } = mongoose;
 
 const EmployeeSchema = new Schema({
@@ -11,7 +11,10 @@ const EmployeeSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  brand:favBrand
+  brand:{
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: Brand
+  }
 });
 
-module.exports = mongoose.model("Employee", EmployeeSchema);
+module.exports = mongoose.model("Employee", EmployeeSchema);  

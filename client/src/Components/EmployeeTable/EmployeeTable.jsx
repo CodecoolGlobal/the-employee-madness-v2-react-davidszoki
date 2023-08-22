@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
 
-const EmployeeTable = ({ employees, onDelete }) => (
+const EmployeeTable = ({ employees, onDelete, brand }) => (
   <div className="EmployeeTable">
     <table>
       <thead>
@@ -19,7 +19,7 @@ const EmployeeTable = ({ employees, onDelete }) => (
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
-            <td>{employee.brand.name}</td>
+            <td>{brand}</td> {/* fetchelt változat */}
             <td>
               <Link to={`/update/${employee._id}`}>
                 <button type="button">Update</button>

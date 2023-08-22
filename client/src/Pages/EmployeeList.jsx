@@ -13,9 +13,14 @@ const deleteEmployee = (id) => {
   );
 };
 
+const fetchBrand = () => {
+  return fetch("/api/brand").then(res=>res.json())
+}
+
 const EmployeeList = ({ path }) => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState(null);
+  const [brand, setBrand] = useState(null);
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -30,6 +35,7 @@ const EmployeeList = ({ path }) => {
       .then((employees) => {
         setLoading(false);
         setEmployees(employees);
+        fetchBrand(setBrand(brand))
       })
 
     //Sample arregment method for the simple search the index.js contain the children path element that is return here props
@@ -60,7 +66,7 @@ const EmployeeList = ({ path }) => {
   }
   return <>
     <Navbar />
-    <EmployeeTable employees={employees} onDelete={handleDelete} />
+    <EmployeeTable employees={employees} onDelete={handleDelete} brand={brand}/>
   </>;
 };
 
