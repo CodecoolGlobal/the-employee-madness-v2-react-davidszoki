@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
 
-const EmployeeTable = ({ employees, onDelete, brand }) => (
+const EmployeeTable = ({ employees, onDelete }) => (
   <div className="EmployeeTable">
     <table>
       <thead>
@@ -19,7 +19,7 @@ const EmployeeTable = ({ employees, onDelete, brand }) => (
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
-            <td>{brand}</td> {/* fetchelt változat */}
+            <td>{employee.brand.name}</td>
             <td>
               <Link to={`/update/${employee._id}`}>
                 <button type="button">Update</button>
@@ -33,6 +33,6 @@ const EmployeeTable = ({ employees, onDelete, brand }) => (
       </tbody>
     </table>
   </div>
-);
+)
 
 export default EmployeeTable;

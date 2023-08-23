@@ -12,19 +12,19 @@ function Navbar() {
                     </Link>
                 </li>
                 <li>
-                    <a href='/last' >
+                    <Link to='/last' >
                         Last name
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href='/level' >
+                    <Link to='/level' >
                         Level
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href='/position' >
+                    <Link to='/position' >
                         Position
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>

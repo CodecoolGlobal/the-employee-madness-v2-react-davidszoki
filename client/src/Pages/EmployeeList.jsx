@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
 import Navbar from "./ExtendsArregment/ArregmentNavbar";
@@ -13,14 +14,13 @@ const deleteEmployee = (id) => {
   );
 };
 
-const fetchBrand = () => {
-  return fetch("/api/brand").then(res=>res.json())
-}
-
 const EmployeeList = ({ path }) => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState(null);
-  const [brand, setBrand] = useState(null);
+  const location = useLocation();
+
+  //location.pathname milyen url-en vagyunk eláruja milyen routon vagyok
+  //ha ide teszem akkor nem kell adatot küldeni
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -31,12 +31,11 @@ const EmployeeList = ({ path }) => {
   };
 
   useEffect(() => {
-    fetchEmployees()
-      .then((employees) => {
-        setLoading(false);
-        setEmployees(employees);
-        fetchBrand(setBrand(brand))
-      })
+    // fetchEmployees()
+    //   .then((employees) => {
+    //     setLoading(false);
+    //     setEmployees(employees);
+    //   })
 
     //Sample arregment method for the simple search the index.js contain the children path element that is return here props
     let url
@@ -51,14 +50,16 @@ const EmployeeList = ({ path }) => {
         url = "/arregement/level"
         break;
       case '/position':
-      url="/arregement/position"
-          break;
+        url = "/arregement/position"
+        break;
       // Default érték állítása
       default:
         url = '/api/employees/'
     }
 
-    fetch(url).then(res => res.json()).then(data => setEmployees(data))
+    fetch(url).then(res => res.json()).then(data => {
+      setEmployees(data);
+      setLoading(false)})
   }, [path]);
 
   if (loading) {
@@ -66,7 +67,7 @@ const EmployeeList = ({ path }) => {
   }
   return <>
     <Navbar />
-    <EmployeeTable employees={employees} onDelete={handleDelete} brand={brand}/>
+    <EmployeeTable employees={employees} onDelete={handleDelete} />
   </>;
 };
 

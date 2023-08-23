@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         element: <EmployeeList path="/first"/>,
       },
       {
-        path: "/last",
+        path: "/last", //egyedi és mi a jelentése lehet sima string is ő csak egy string!!
         element: <EmployeeList path="/last"/>,
       },
       {

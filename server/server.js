@@ -22,19 +22,15 @@ const arregment = require("./routes/arregment")
 app.use("/arregement", arregment)
 
 //Search fetch
-const search = require("./routes/search")
+const search = require("./routes/search");
 app.use("/search", search)
 
-
 //Starter code
+//populate az átalakítja a másik modelt látja hogy nézki és a név változót a brand-ből tölti fel
 app.get("/api/employees/", async (req, res) => {
-  const employees = await EmployeeModel.find().sort({ created: "desc" });
+  const employees = await EmployeeModel.find().sort({ created: "desc" })
+  .populate({path:"brand", model:FavBrands});
   return res.json(employees);
-});
-
-app.get("/api/brand", async (req, res) => {
-  const brand = await FavBrands.find().sort({ created: "desc" });
-  return res.json(brand);
 });
 
 app.get("/api/employees/:id", async (req, res) => {
