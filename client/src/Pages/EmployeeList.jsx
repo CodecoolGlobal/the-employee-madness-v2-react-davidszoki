@@ -4,9 +4,9 @@ import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
 import Navbar from "./ExtendsArregment/ArregmentNavbar";
 
-const fetchEmployees = () => {
-  return fetch("/api/employees").then((res) => res.json());
-};
+// const fetchEmployees = () => {
+//   return fetch("/api/employees").then((res) => res.json());
+// };
 
 const deleteEmployee = (id) => {
   return fetch(`/api/employees/${id}`, { method: "DELETE" }).then((res) =>
@@ -30,6 +30,7 @@ const EmployeeList = ({ path }) => {
     });
   };
 
+  console.log(location.pathname);
   useEffect(() => {
     // fetchEmployees()
     //   .then((employees) => {

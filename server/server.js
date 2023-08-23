@@ -33,6 +33,11 @@ app.get("/api/employees/", async (req, res) => {
   return res.json(employees);
 });
 
+app.get("/api/brands", async(req, res) => {
+  const brands = await FavBrands.find()
+  return res.json(brands)
+})
+
 app.get("/api/employees/:id", async (req, res) => {
   const employee = await EmployeeModel.findById(req.params.id);
   return res.json(employee);

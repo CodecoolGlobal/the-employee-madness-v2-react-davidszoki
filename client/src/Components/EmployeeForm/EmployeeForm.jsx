@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [name, setName] = useState(employee?.name ?? "");
   const [level, setLevel] = useState(employee?.level ?? "");
   const [position, setPosition] = useState(employee?.position ?? "");
   const [favBrand, setFavBrand] = useState(employee?.brand.name ?? "")
+  const [brandOptions, setBrandOptions] = useState([])
 
-  
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("/api/brands");
+        const data = await response.json();
+        setBrandOptions(data); // Assuming data is an array of brand objects
+      } catch (error) {
+        console.error("Error fetching brands:", error);
+      }
+    }
+    fetchData();
+  }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -64,13 +76,20 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 
       {/* Add the Favourite Brand for the person */}
       <div className="control">
-        <label htmlFor="favBrand">Favourite Brand:</label>
-        <input
+        <label htmlFor="favBrand">Favorite Brand:</label>
+        <select
           value={favBrand}
           onChange={(e) => setFavBrand(e.target.value)}
           name="favBrand"
           id="favBrand"
-        />
+        >
+          <option value="">Select a Brand</option>
+          {brandOptions.map((brand) => (
+            <option key={brand._id} value={brand._id}>
+              {brand.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Buttons */}
