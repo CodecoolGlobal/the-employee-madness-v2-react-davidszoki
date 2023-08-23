@@ -31,7 +31,7 @@ POST http://localhost:8080/api/equipment/
 Content-Type: application/json
 
 {
-  "name": "Glock9",
-  "type": "Gun",
-  "amount": 10
+  "equipmentName": "Hero4 Camera",
+  "type": "GoPro",
+  "amount": 80
 }

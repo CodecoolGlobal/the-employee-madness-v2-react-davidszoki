@@ -12,6 +12,9 @@ function Layout () {
         <li className="grow">
           <Link to="/">Employees</Link>
         </li>
+        <li className="grow">
+          <Link to="/equipments">Equipment</Link>
+        </li>
         <li className="search-container">
           <input type="text" placeholder='Type to search...' className="search-input" 
           value={searchValue} onChange={e => setSearchValeu(e.target.value)}/>

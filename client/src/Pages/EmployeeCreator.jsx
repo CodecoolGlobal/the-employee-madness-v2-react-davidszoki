@@ -13,6 +13,10 @@ return fetch("/api/employees", {
   }).then((res) => res.json());
 };
 
+const fetchEquipment = ()=>{
+  return fetch("/equipment").then(res=>res.json())
+}
+
 //Equipment method creation
 const createEquipment = (equipment) => {
   return fetch("/api/equipment/", {
@@ -28,8 +32,19 @@ const createEquipment = (equipment) => {
 const EmployeeCreator = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [equipment, setEquipment] = useState([])
 
-  const handleCreateEmployee = (employee, equipment) => {
+  fetchEquipment().then(equip=>setEquipment(equip))
+
+  const handleCreateEquipment = (equipment)=>{
+    createEquipment(equipment)
+    .then(()=>{
+      setLoading(false);
+      navigate("/")
+    })
+  }
+
+  const handleCreateEmployee = (employee) => {
     setLoading(true);
 
     createEmployee(employee)
@@ -37,19 +52,15 @@ const EmployeeCreator = () => {
         setLoading(false);
         navigate("/");
       })
-
-    createEquipment(equipment)
-    .then(()=>{
-      setLoading(false);
-      navigate("/")
-    })
   };
 
   return (
     <EmployeeForm
+      equipmentDatas={equipment}
       onCancel={() => navigate("/")}
       disabled={loading}
       onSave={handleCreateEmployee}
+      onEquipment={handleCreateEquipment}
     />
   );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
 import Navbar from "./ExtendsArregment/ArregmentNavbar";
@@ -17,7 +17,7 @@ const deleteEmployee = (id) => {
 const EmployeeList = ({ path }) => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState(null);
-  const location = useLocation();
+  // const location = useLocation();
 
   //location.pathname milyen url-en vagyunk eláruja milyen routon vagyok
   //ha ide teszem akkor nem kell adatot küldeni
@@ -30,7 +30,7 @@ const EmployeeList = ({ path }) => {
     });
   };
 
-  console.log(location.pathname);
+  // console.log(location.pathname);
   useEffect(() => {
     // fetchEmployees()
     //   .then((employees) => {

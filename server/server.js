@@ -17,6 +17,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+//------------------------------------------Rout methods---------------------------------
 //Sort by task in this route
 const arregment = require("./routes/arregment")
 app.use("/arregement", arregment)
@@ -25,6 +27,8 @@ app.use("/arregement", arregment)
 const search = require("./routes/search");
 app.use("/search", search)
 
+
+//------------------------------------------Get methods---------------------------------
 //Starter code
 //populate az átalakítja a másik modelt látja hogy nézki és a név változót a brand-ből tölti fel
 app.get("/api/employees/", async (req, res) => {
@@ -43,6 +47,12 @@ app.get("/api/employees/:id", async (req, res) => {
   return res.json(employee);
 });
 
+app.get("/equipment", async (req, res)=>{
+  const equipment = await EquipmentModel.find()
+  return res.json(equipment)
+})
+
+//------------------------------------------Post methods---------------------------------
 //Post method employee
 app.post("/api/employees/", async (req, res, next) => {
   const employee = req.body;
@@ -67,6 +77,7 @@ app.post("/api/equipment/", async (req, res, next) => {
   }
 });
 
+//------------------------------------------Patch methods---------------------------------
 app.patch("/api/employees/:id", async (req, res, next) => {
   try {
     const employee = await EmployeeModel.findOneAndUpdate(
@@ -80,7 +91,20 @@ app.patch("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+app.patch("/api/equipment/:id", async (req, res, next) => {
+  try {
+    const equipment = await EquipmentModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { ...req.body } },
+      { new: true }
+    );
+    return res.json(equipment);
+  } catch (err) {
+    return next(err);
+  }
+});
 
+//------------------------------------------Delete methods---------------------------------
 //Delete method for employee
 app.delete("/api/employees/:id", async (req, res, next) => {
   try {
