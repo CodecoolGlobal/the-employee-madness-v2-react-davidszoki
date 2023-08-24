@@ -48,3 +48,7 @@ Content-Type:  application/json
   "type":"West",
   "amount":15
 }
+
+
+###
+GET http://localhost:8080/years-of-experience/2

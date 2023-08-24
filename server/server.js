@@ -29,11 +29,20 @@ app.use("/search", search)
 
 
 //------------------------------------------Get methods---------------------------------
+
+app.get("/years-of-experience/:id", async(req,res)=>{
+  const id = req.params.id
+  const modelExperince = await EmployeeModel.find({yearsOfEx: {$gt: id} })
+  res.json(modelExperince)
+})
+
+
+
 //Starter code
 //populate az átalakítja a másik modelt látja hogy nézki és a név változót a brand-ből tölti fel
 app.get("/api/employees/", async (req, res) => {
   const employees = await EmployeeModel.find().sort({ created: "desc" })
-  .populate({path:"brand", model:FavBrands});
+  // .populate({path:"brand", model:FavBrands});
   return res.json(employees);
 });
 

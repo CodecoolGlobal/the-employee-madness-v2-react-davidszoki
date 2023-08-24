@@ -17,6 +17,7 @@ const createEmployee = (employee) => {
 const EmployeeCreator = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  
 
   const handleCreateEmployee = (employee) => {
     setLoading(true);

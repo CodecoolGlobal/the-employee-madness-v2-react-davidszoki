@@ -11,6 +11,7 @@ const EmployeeSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  yearsOfEx: Number,
   brand:{
     type: mongoose.Schema.Types.ObjectId,
     ref: "brand"

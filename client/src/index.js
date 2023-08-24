@@ -15,6 +15,8 @@ import Equipment from "./Pages/Equipment";
 import EquipmentCreator from "./Pages/EquipmentCreator";
 import EquipmentUpdater from "./Pages/EquipmentUpdater";
 
+//PA
+import Experience from "./Pages/Experience";
 
 import "./index.css";
 import TableTest from "./Pages/TableTest";
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <EmployeeList path="/"/>,
+      },
+      {
+        path: "/years-of-experience/:id",
+        element: <Experience path="years-of-experience"/>,
       },
       {
         path: "/first",
