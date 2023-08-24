@@ -24,6 +24,9 @@ function Layout () {
           <Link to="/create">
             <button type="button">Create Employee</button>
           </Link>
+          <Link to="/equipmentCreate">
+            <button type="button">Create Equipment</button>
+          </Link>
         </li>
       </ul>
     </nav>

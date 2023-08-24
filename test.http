@@ -7,7 +7,8 @@ Content-Type: application/json
 {
   "name": "Valaki",
   "level": "Godlike",
-  "position": "Joker"
+  "position": "Joker",
+  "brand":"64e4dffbeaa508fde173dc27"
 }
 
 ###
@@ -34,4 +35,16 @@ Content-Type: application/json
   "equipmentName": "Hero4 Camera",
   "type": "GoPro",
   "amount": 80
+}
+
+
+###
+// Equipment test by id
+PATCH http://localhost:8080/api/equipment/64e64705b7b09b79e839c12c
+Content-Type:  application/json
+
+{
+  "equipmentName": "BodyArmor",
+  "type":"West",
+  "amount":15
 }

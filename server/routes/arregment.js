@@ -5,7 +5,7 @@ const FavBrands = require("../db/brand.model")
 
 //Navbar arregment for the tasks
 router.get("/sortFirstName", async (req, res) => {
-    const sortFirstName = await EmployeeModel.find().sort({ name: -1 })
+    const sortFirstName = await EmployeeModel.find().sort({ name: 1 })
     .populate({path:"brand", model:FavBrands})
     // console.log(mongooseSort);
     res.json(sortFirstName)

@@ -1,6 +1,6 @@
 // https://mongoosejs.com/
 const mongoose = require("mongoose");
-const Brand = require("./brand.model")
+// const brand = require("./brand.model")
 const { Schema } = mongoose;
 
 const EmployeeSchema = new Schema({
@@ -12,8 +12,8 @@ const EmployeeSchema = new Schema({
     default: Date.now,
   },
   brand:{
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: Brand
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "brand"
   }
 });
 

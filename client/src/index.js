@@ -9,7 +9,11 @@ import EmployeeList from "./Pages/EmployeeList";
 import EmployeeCreator from "./Pages/EmployeeCreator";
 import EmployeeUpdater from "./Pages/EmployeeUpdater";
 import SearchField from "./Pages/SearchFields/SearchField"
+
+//Equipment side
 import Equipment from "./Pages/Equipment";
+import EquipmentCreator from "./Pages/EquipmentCreator";
+import EquipmentUpdater from "./Pages/EquipmentUpdater";
 
 
 import "./index.css";
@@ -51,8 +55,16 @@ const router = createBrowserRouter([
         element: <EmployeeCreator />,
       },
       {
+        path: "/equipmentCreate",
+        element: <EquipmentCreator />,
+      },
+      {
         path: "/update/:id",
         element: <EmployeeUpdater />,
+      },
+      {
+        path: "/updateEquipment/:id",
+        element: <EquipmentUpdater />,
       },
       {
         path: "/table-test",

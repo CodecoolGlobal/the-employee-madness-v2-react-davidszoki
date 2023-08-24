@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import EmployeeForm from "../Components/EmployeeForm";
 import Loading from "../Components/Loading";
 
+
+//Employee update method
 const updateEmployee = (employee) => {
   return fetch(`/api/employees/${employee._id}`, {
     method: "PATCH",
@@ -26,6 +28,7 @@ const EmployeeUpdater = () => {
   const [updateLoading, setUpdateLoading] = useState(false);
   const [employeeLoading, setEmployeeLoading] = useState(true);
 
+
   useEffect(() => {
     setEmployeeLoading(true);
     fetchEmployee(id)
@@ -33,6 +36,7 @@ const EmployeeUpdater = () => {
         setEmployee(employee);
         setEmployeeLoading(false);
       });
+
   }, [id]);
 
   const handleUpdateEmployee = (employee) => {

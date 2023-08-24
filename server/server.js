@@ -52,6 +52,11 @@ app.get("/equipment", async (req, res)=>{
   return res.json(equipment)
 })
 
+app.get("/equipment/:id", async (req, res)=>{
+  const equipment = await EquipmentModel.findById(req.params.id)
+  return res.json(equipment)
+})
+
 //------------------------------------------Post methods---------------------------------
 //Post method employee
 app.post("/api/employees/", async (req, res, next) => {

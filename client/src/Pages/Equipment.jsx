@@ -27,7 +27,6 @@ function Equipment() {
           <th>Name</th>
           <th>Type</th>
           <th>Amount</th>
-          {/* <th>Favourite Brands</th> */}
           <th />
         </tr>
       </thead>
@@ -37,9 +36,8 @@ function Equipment() {
             <td>{equip.equipmentName}</td>
             <td>{equip.type}</td>
             <td>{equip.amount}</td>
-            {/* <td>{equip.brand.name}</td> */}
             <td>
-              <Link to={`/update/${equip._id}`}>
+              <Link to={`/updateEquipment/${equip._id}`}>
                 <button type="button">Update</button>
               </Link>
               <button type="button" onClick={() => deleteEquipment(equip._id)}>
