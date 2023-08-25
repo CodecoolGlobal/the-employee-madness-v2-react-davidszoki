@@ -30,12 +30,14 @@ app.use("/search", search)
 
 //------------------------------------------Get methods---------------------------------
 
+
+//--------------------------- PA -------------------------------
 app.get("/years-of-experience/:id", async(req,res)=>{
   const id = req.params.id
   const modelExperince = await EmployeeModel.find({yearsOfEx: {$gt: id} })
   res.json(modelExperince)
 })
-
+//--------------------------- PA -------------------------------
 
 
 //Starter code
@@ -72,7 +74,16 @@ app.post("/api/employees/", async (req, res, next) => {
   const employee = req.body;
 
   try {
-    const saved = await EmployeeModel.create(employee);
+    const saved = new EmployeeModel({
+      ...employee // itt kezdőértéke a saved-nek
+    });
+
+    if (saved.level === "Junior") { // itt validáljuk
+      saved.yearsOfEx = 0;
+    } 
+
+    await saved.save()
+
     return res.json(saved);
   } catch (err) {
     return next(err);
@@ -92,19 +103,51 @@ app.post("/api/equipment/", async (req, res, next) => {
 });
 
 //------------------------------------------Patch methods---------------------------------
+// original
+// app.patch("/api/employees/:id", async (req, res, next) => {
+//   try {
+//     const employee = await EmployeeModel.findOneAndUpdate(
+//       { _id: req.params.id },
+//       { $set: { ...req.body } },
+//       { new: true }
+//     );
+//     return res.json(employee);
+//   } catch (err) {
+//     return next(err);
+//   }
+// });
+
+// updta the patch method for PA update
 app.patch("/api/employees/:id", async (req, res, next) => {
+  const id = req.params.id
+  const bodySave = req.body
+
+  //az id az itt egy adott paraméter
+  // a body az a post methodból jön és mindent tartalmaz amit a bodyba tettünk
   try {
     const employee = await EmployeeModel.findOneAndUpdate(
-      { _id: req.params.id },
-      { $set: { ...req.body } },
+      { _id: id},
+      { $set: { ...bodySave } },
       { new: true }
     );
+
+    if (employee.level === "Junior") {
+      employee.yearsOfEx = 0
+    }
+
+    await employee.save() //itt elmentjük az aktuálisan átküldött adatot a módosításokkal
+
     return res.json(employee);
   } catch (err) {
     return next(err);
   }
 });
 
+
+
+
+
+//Equipment update
 app.patch("/api/equipment/:id", async (req, res, next) => {
   try {
     const equipment = await EquipmentModel.findOneAndUpdate(

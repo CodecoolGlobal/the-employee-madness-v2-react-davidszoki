@@ -5,19 +5,19 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [level, setLevel] = useState(employee?.level ?? "");
   const [position, setPosition] = useState(employee?.position ?? "");
   const [yearsOfEx, setYearsOfEx] = useState(employee?.yearsOfEx ?? "");
-  const [show, setShow] = useState(false)
 
-  const handleLevelChange = (e) => {
-    const selectedLevel = e.target.value;
-    setLevel(selectedLevel);
 
-    if (selectedLevel === "Junior") {
-      setYearsOfEx(0);
-      setShow(true);
-    } else {
-      setShow(false);
-    }
-  };
+  // const handleLevelChange = (e) => {
+  //   const selectedLevel = e.target.value;
+  //   setLevel(selectedLevel);
+
+  //   if (selectedLevel === "Junior") {
+  //     setYearsOfEx(0);
+  //     setShow(true);
+  //   } else {
+  //     setShow(false);
+  //   }
+  // };
 
 
 
@@ -90,6 +90,29 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
       </div>
 
       <div>
+        <label>Level</label>
+        <input
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+          name="level"
+          id="level"
+        />
+      </div>
+
+      {level !== "Junior" ? (<div>
+        <label>Employee Experience</label>
+        <input
+        value={yearsOfEx}
+        onChange={(e)=>setYearsOfEx(e.target.value)}
+        />
+      </div>
+      ):(
+        <div>
+          Your Experience is 0.
+        </div>
+      )}
+
+      {/* <div>
         {show ? (
           <div>
             {level === "Junior" && (
@@ -121,7 +144,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
             )}
           </>
         )}
-      </div>
+      </div> */}
 
 
       {/* Add the Favourite Brand for the person */}

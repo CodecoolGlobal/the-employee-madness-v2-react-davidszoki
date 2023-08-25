@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const fetchExperience = (id) => {
     return fetch(`/years-of-experience/${id}`).then(res => res.json());
 }
 
 function Experience() {
+    const { id } = useParams(); //Ezt használni minden Id-s fetchnél
     const [experience, setExperience] = useState([]);
-    
-    useEffect(() => {
-        const id = { _id: 'your_id_here' }; // Replace 'your_id_here' with the actual ID
-        fetchExperience(id._id).then(data => setExperience(data));
-    }, []);
 
+    //ha useEffectbe teszem végtelen ciklusra futok
+    // az a rész ami itt van bajusz zárójelében (http://localhost:3000/years-of-experience/{2}) visszadja az összes paramsot key-valeu párok formályában
+    fetchExperience(id).then(data => setExperience(data));
 
     return (
         <div>
