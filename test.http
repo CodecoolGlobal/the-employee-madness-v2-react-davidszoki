@@ -49,6 +49,12 @@ Content-Type:  application/json
   "amount":15
 }
 
-
+//PA practice
 ###
 GET http://localhost:8080/years-of-experience/2
+
+
+
+//Own Practice
+###
+GET http://localhost:8080/same

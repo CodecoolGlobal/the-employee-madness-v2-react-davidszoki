@@ -39,6 +39,16 @@ app.get("/years-of-experience/:id", async(req,res)=>{
 })
 //--------------------------- PA -------------------------------
 
+//-------------------------- Own Practice-----------------------
+app.get("/same", async(req,res)=>{
+  const {level, position} = req.body
+  // const filter = new RegExp(`^${level}.*${position}$`, "i");
+  const sameFind = await EmployeeModel.find({level:level, position:position})
+  res.json(sameFind)
+})
+
+//-------------------------- Own Practice-----------------------
+
 
 //Starter code
 //populate az átalakítja a másik modelt látja hogy nézki és a név változót a brand-ből tölti fel

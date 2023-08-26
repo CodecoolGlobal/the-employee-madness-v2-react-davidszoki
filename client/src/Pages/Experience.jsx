@@ -15,15 +15,27 @@ function Experience() {
 
     return (
         <div>
-            <h2>Experience</h2>
-            {experience.map(exp => (
-                <ul key={exp._id}>
-                    <li>{exp.name}</li>
-                    <li>{exp.level}</li>
-                    <li>{exp.position}</li>
-                    <li>{exp.yearsOfEx}</li>
-                </ul>
-            ))}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Position</th>
+                        <th>Years of Experience</th>
+                        <th />
+                    </tr>
+                </thead>
+                <tbody>
+                    {experience.map((exp) => (
+                        <tr key={exp._id}>
+                            <td>{exp.name}</td>
+                            <td>{exp.level}</td>
+                            <td>{exp.position}</td>
+                            <td>{exp.yearsOfEx}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }

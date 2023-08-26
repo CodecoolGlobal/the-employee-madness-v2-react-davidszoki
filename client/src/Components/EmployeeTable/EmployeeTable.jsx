@@ -1,15 +1,30 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
+import SameWorkers from "../../Pages/SameWorkers";
+import { useState } from "react";
 
-const EmployeeTable = ({ employees, onDelete }) => (
+const EmployeeTable = ({ employees, onDelete }) => {
+  
+  const [showSame, setShowSame] = useState(true);
+  const [employee, setEmployee] = useState([]);
+
+  const setterEmployee = (employ) => {
+    setEmployee(employ);
+    setShowSame(false)
+  }
+  
+  const handleBack = () => {
+    setShowSame(true)
+  }
+
+  return(
   <div className="EmployeeTable">
-    <table>
+    {showSame ? (<table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Level</th>
           <th>Position</th>
-          <th>Years of Experience</th>
           {/* <th>Favourite Brands</th> */}
           <th />
         </tr>
@@ -20,9 +35,9 @@ const EmployeeTable = ({ employees, onDelete }) => (
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
-            <td>{employee.yearsOfEx}</td>
             {/* <td>{employee.brand.name}</td> */}
             <td>
+              <button type="submit" onClick={()=>setterEmployee(employee)}>Same workers</button>
               <Link to={`/update/${employee._id}`}>
                 <button type="button">Update</button>
               </Link>
@@ -33,8 +48,8 @@ const EmployeeTable = ({ employees, onDelete }) => (
           </tr>
         ))}
       </tbody>
-    </table>
+    </table>):(<SameWorkers sameEmploye={employee} onBack={handleBack}/>)}
   </div>
-)
+)}
 
 export default EmployeeTable;
