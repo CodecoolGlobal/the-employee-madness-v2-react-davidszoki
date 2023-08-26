@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react'
 
-const fetchSameEmployee = () => {
-    return fetch(`/same`).then(res => res.json())
-}
-
 function SameWorkers({ sameEmploye, onBack }) {
     const [sameWorkers, setsameWorkers] = useState([]);
+
+    const level = sameEmploye.level
+    const posi = sameEmploye.position
+    const queryParams = new URLSearchParams({level, posi}).toString()
+
+    const url = `/same?${queryParams}`
     
     useEffect(()=>{
-        fetchSameEmployee().then(setsameWorkers(sameEmploye))
-    }, [sameEmploye])
-    
-    console.log(sameWorkers);
+        fetch(url).then(res => res.json())
+        .then(data => {setsameWorkers(data)})
+    }, [url])
+    // console.log(sameWorkers);
+
     return (
         <div>
-            <h1>Test</h1>
             <button onClick={onBack}>Back</button>
-            {/* <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -34,7 +36,7 @@ function SameWorkers({ sameEmploye, onBack }) {
                         </tr>
                     ))}
                 </tbody>
-            </table> */}
+            </table>
         </div>
     )
 }

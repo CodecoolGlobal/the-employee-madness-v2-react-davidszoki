@@ -41,9 +41,14 @@ app.get("/years-of-experience/:id", async(req,res)=>{
 
 //-------------------------- Own Practice-----------------------
 app.get("/same", async(req,res)=>{
-  const {level, position} = req.body
+  // const level = "Junior";
+  // const posi = "Superhero"
+  const {level, posi} = req.query;
+  console.log(level);
+  console.log(posi);
   // const filter = new RegExp(`^${level}.*${position}$`, "i");
-  const sameFind = await EmployeeModel.find({level:level, position:position})
+  const sameFind = await EmployeeModel.find({level:level, position:posi})
+  // console.log(sameFind);
   res.json(sameFind)
 })
 
