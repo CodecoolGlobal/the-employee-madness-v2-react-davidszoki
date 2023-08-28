@@ -23,11 +23,12 @@ const EmployeeList = ({ path }) => {
   //ha ide teszem akkor nem kell adatot küldeni
 
   const handleDelete = (id) => {
-    deleteEmployee(id);
-
-    setEmployees((employees) => {
-      return employees.filter((employee) => employee._id !== id);
-    });
+    if (window.confirm("Do you really delet this Employee?")) {
+      deleteEmployee(id);
+      setEmployees((employees) => {
+        return employees.filter((employee) => employee._id !== id);
+      });
+    }
   };
 
   // console.log(location.pathname);
@@ -60,7 +61,8 @@ const EmployeeList = ({ path }) => {
 
     fetch(url).then(res => res.json()).then(data => {
       setEmployees(data);
-      setLoading(false)})
+      setLoading(false)
+    })
   }, [path]);
 
   if (loading) {

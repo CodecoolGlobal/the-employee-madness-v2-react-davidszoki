@@ -43,9 +43,9 @@ app.get("/years-of-experience/:id", async(req,res)=>{
 app.get("/same", async(req,res)=>{
   // const level = "Junior";
   // const posi = "Superhero"
-  const {level, posi} = req.query;
-  console.log(level);
-  console.log(posi);
+  const {level, posi} = req.query; // figyelni hogy milyen nevet adok át neki a frontenden és azt itt is hivatkozni kell
+  // console.log(level);
+  // console.log(posi);
   // const filter = new RegExp(`^${level}.*${position}$`, "i");
   const sameFind = await EmployeeModel.find({level:level, position:posi})
   // console.log(sameFind);

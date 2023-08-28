@@ -5,6 +5,11 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [level, setLevel] = useState(employee?.level ?? "");
   const [position, setPosition] = useState(employee?.position ?? "");
   const [yearsOfEx, setYearsOfEx] = useState(employee?.yearsOfEx ?? "");
+  //Own practice from PA practises
+  const [startDate, setStartDate] = useState(employee?.startDate ?? "");
+  const [currentSalary, setCurrentSalary] = useState(employee?.currentSalary ?? "");
+  const [favouriteColor, setFavouriteColor] = useState(employee?.favouriteColor ?? "");
+  const [desiredSalary, setDesiredSalary] = useState(employee?.desiredSalary ?? "");
 
 
   // const handleLevelChange = (e) => {
@@ -53,6 +58,10 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
         position,
         yearsOfEx,
         // favBrand
+        startDate,
+        currentSalary,
+        favouriteColor,
+        desiredSalary,
       });
     }
 
@@ -62,6 +71,10 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
       position,
       yearsOfEx,
       // favBrand
+      startDate,
+      currentSalary,
+      favouriteColor,
+      desiredSalary,
     });
   };
 
@@ -89,8 +102,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
         />
       </div>
 
-      <div>
-        <label>Level</label>
+      <div className="control">
+        <label htmlFor="position">Level</label>
         <input
           value={level}
           onChange={(e) => setLevel(e.target.value)}
@@ -100,52 +113,61 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
       </div>
 
       {level !== "Junior" ? (<div>
-        <label>Employee Experience</label>
+        <label htmlFor="position">Employee Experience</label>
         <input
-        value={yearsOfEx}
-        onChange={(e)=>setYearsOfEx(e.target.value)}
+          value={yearsOfEx}
+          onChange={(e) => setYearsOfEx(e.target.value)}
         />
       </div>
-      ):(
-        <div>
+      ) : (
+        <div className="control">
           Your Experience is 0.
         </div>
       )}
 
-      {/* <div>
-        {show ? (
-          <div>
-            {level === "Junior" && (
-              <>
-                Your Experience is 0
-              </>
-            )}
-          </div>
-        ) : (
-          <>
-            <label>Level</label>
-            <select value={level} onChange={handleLevelChange}>
-              <option value="">Select a level</option>
-              <option value="Junior">Junior</option>
-              <option value="Mid">Medior</option>
-              <option value="Senior">Senior</option>
-              <option value="Expert">Expert</option>
-              <option value="Godlike">Godlike</option>
-            </select>
-            {level !== "Junior" && (
-              <>
-                <label>Years of Experience</label>
-                <input
-                  type="number"
-                  value={yearsOfEx}
-                  onChange={(e) => setYearsOfEx(e.target.value)}
-                />
-              </>
-            )}
-          </>
-        )}
-      </div> */}
+      <div className="control">
+        <label htmlFor="position">Date</label>
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          name="level"
+          id="level"
+        />
+      </div>
 
+      <div className="control">
+        <label htmlFor="position">Current Salary</label>
+        <input
+          type="number"
+          value={currentSalary}
+          onChange={(e) => setCurrentSalary(e.target.value)}
+          name="level"
+          id="level"
+        />
+      </div>
+
+      <div className="control">
+        <label htmlFor="position">Favourity Color</label>
+        <input
+        type="color"
+          value={favouriteColor}
+          onChange={(e) => setFavouriteColor(e.target.value)}
+          name="level"
+          id="level"
+        />
+      </div>
+
+      <div className="control">
+        <label htmlFor="position">Desired Salary</label>
+        <input
+        type="number"
+          value={desiredSalary}
+          onChange={(e) => setDesiredSalary(e.target.value)}
+          name="level"
+          id="level"
+        />
+      </div>
 
       {/* Add the Favourite Brand for the person */}
       {/* <div className="control">

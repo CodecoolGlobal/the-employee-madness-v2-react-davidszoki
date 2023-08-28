@@ -3,6 +3,12 @@ import "./EmployeeTable.css";
 import SameWorkers from "../../Pages/SameWorkers";
 import { useState } from "react";
 
+
+function date(date) {
+  let sliceDate = date.split("T");
+  return sliceDate[0]
+}
+
 const EmployeeTable = ({ employees, onDelete }) => {
   
   const [showSame, setShowSame] = useState(true);
@@ -25,6 +31,10 @@ const EmployeeTable = ({ employees, onDelete }) => {
           <th>Name</th>
           <th>Level</th>
           <th>Position</th>
+          <th>Starting date</th>
+          <th>Current Salary</th>
+          <th>Desired Salary</th>
+          <th>Favourite color</th>
           {/* <th>Favourite Brands</th> */}
           <th />
         </tr>
@@ -35,9 +45,13 @@ const EmployeeTable = ({ employees, onDelete }) => {
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
+            <td>{date(employee.startDate)}</td>
+            <td>{employee.currentSalary}</td>
+            <td>{employee.desiredSalary}</td>
+            <td style={{backgroundColor: employee.favouriteColor}}></td>
             {/* <td>{employee.brand.name}</td> */}
             <td>
-              <button type="submit" onClick={()=>setterEmployee(employee)}>Same workers</button>
+              {/* <button type="submit" onClick={()=>setterEmployee(employee)}>Same workers</button> */}
               <Link to={`/update/${employee._id}`}>
                 <button type="button">Update</button>
               </Link>

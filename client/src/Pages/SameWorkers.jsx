@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 function SameWorkers({ sameEmploye, onBack }) {
     const [sameWorkers, setsameWorkers] = useState([]);
-
+    // figyelni hogy milyen nevet adok át neki itt és azt a backenden is úgy kell hivatkozni
     const level = sameEmploye.level
     const posi = sameEmploye.position
     const queryParams = new URLSearchParams({level, posi}).toString()

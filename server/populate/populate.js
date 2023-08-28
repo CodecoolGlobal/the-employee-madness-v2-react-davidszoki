@@ -17,6 +17,27 @@ if (!mongoUrl) {
   process.exit(1); // exit the current program
 }
 
+//Generate random dates
+function getRandomDate(start, end) {
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+  const randomTime = startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime());
+  return new Date(randomTime).toISOString().slice(0, 10);
+}
+
+function getRandomSalary(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 const pick = (from) => from[Math.floor(Math.random() * (from.length - 0))];
 
 const populateEmployees = async () => {
@@ -27,7 +48,11 @@ const populateEmployees = async () => {
     name,
     level: pick(levels),
     position: pick(positions),
-    brand: pick(brands) // This should be an ObjectId reference, not just a brand name
+    //brand: pick(brands), // This should be an ObjectId reference, not just a brand name
+    startDate: getRandomDate("2010-01-01","2020-12-31"),
+    currentSalary: getRandomSalary(20, 60),
+    favouriteColor: getRandomColor(),
+    desiredSalary: getRandomSalary(65, 80)
   }));
 
   console.log("Employees created");

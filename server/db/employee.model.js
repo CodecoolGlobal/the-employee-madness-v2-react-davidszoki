@@ -11,11 +11,20 @@ const EmployeeSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  yearsOfEx: Number,
-  brand:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "brand"
-  }
+  // Own parctice from PA practices #2
+  startDate: Date, 
+  currentSalary: Number,
+  favouriteColor: String,
+  desiredSalary: Number,
+  
+  // PA
+  yearsOfEx: Number, 
+  
+  // Own practice for journey
+  // brand:{ 
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "brand"
+  // }
 });
 
 module.exports = mongoose.model("Employee", EmployeeSchema);  
