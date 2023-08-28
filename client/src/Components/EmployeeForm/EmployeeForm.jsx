@@ -6,7 +6,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [position, setPosition] = useState(employee?.position ?? "");
   const [yearsOfEx, setYearsOfEx] = useState(employee?.yearsOfEx ?? "");
   //Own practice from PA practises
-  const [startDate, setStartDate] = useState(employee?.startDate ?? "");
+  const [startDate, setStartDate] = useState(employee?.startDate.split("T")[0] ?? ""); //A formátumnál a date-hez csak a dátum kell.
   const [currentSalary, setCurrentSalary] = useState(employee?.currentSalary ?? "");
   const [favouriteColor, setFavouriteColor] = useState(employee?.favouriteColor ?? "");
   const [desiredSalary, setDesiredSalary] = useState(employee?.desiredSalary ?? "");

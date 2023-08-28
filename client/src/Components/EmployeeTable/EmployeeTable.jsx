@@ -4,8 +4,8 @@ import SameWorkers from "../../Pages/SameWorkers";
 import { useState } from "react";
 
 
-function date(date) {
-  let sliceDate = date.split("T");
+function dateConverter(date) {
+  let sliceDate = date.split("T") //Dupla d mert 01/13 a betű a karakterszámra utal
   return sliceDate[0]
 }
 
@@ -45,13 +45,13 @@ const EmployeeTable = ({ employees, onDelete }) => {
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
-            <td>{date(employee.startDate)}</td>
+            <td>{dateConverter(employee.startDate)}</td>
             <td>{employee.currentSalary}</td>
             <td>{employee.desiredSalary}</td>
             <td style={{backgroundColor: employee.favouriteColor}}></td>
             {/* <td>{employee.brand.name}</td> */}
             <td>
-              {/* <button type="submit" onClick={()=>setterEmployee(employee)}>Same workers</button> */}
+              <button type="submit" onClick={()=>setterEmployee(employee)}>Same workers</button>
               <Link to={`/update/${employee._id}`}>
                 <button type="button">Update</button>
               </Link>

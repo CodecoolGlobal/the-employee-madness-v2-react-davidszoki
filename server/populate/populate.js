@@ -22,7 +22,7 @@ function getRandomDate(start, end) {
   const startDate = new Date(start);
   const endDate = new Date(end);
   const randomTime = startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime());
-  return new Date(randomTime).toISOString().slice(0, 10);
+  return new Date(randomTime)
 }
 
 function getRandomSalary(min, max) {
