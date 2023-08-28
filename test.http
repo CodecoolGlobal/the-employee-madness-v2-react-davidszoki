@@ -58,3 +58,17 @@ GET http://localhost:8080/years-of-experience/2
 //Own Practice
 ###
 GET http://localhost:8080/same
+
+
+###
+PATCH http://localhost:8080/kittens/64ec8cd43e38ffaa1890700d
+Content-Type:  application/json
+
+{
+"kittens":[
+  {"name":"Mirci","weight":0.25},
+  {"name":"Cirmike","weight":0.40},
+  {"name":"Kormi","weight":0.30},
+  {"name":"Tuluz","weight":0.45}
+]
+}

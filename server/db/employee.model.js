@@ -12,14 +12,22 @@ const EmployeeSchema = new Schema({
     default: Date.now,
   },
   // Own parctice from PA practices #2
-  startDate: Date, 
+  startDate: Date,
   currentSalary: Number,
   favouriteColor: String,
   desiredSalary: Number,
-  
+
+  // Own parctice from PA practices #6
+  kittens:[
+    {
+      name: String,
+      weight: Number
+    }
+  ],
+
   // PA
-  yearsOfEx: Number, 
-  
+  yearsOfEx: Number,
+
   // Own practice for journey
   // brand:{ 
   //   type: mongoose.Schema.Types.ObjectId,

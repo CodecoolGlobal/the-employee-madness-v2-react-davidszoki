@@ -52,6 +52,26 @@ app.get("/same", async(req,res)=>{
   res.json(sameFind)
 })
 
+
+// Pa practises #6
+app.get("/kittens/:id", async(req, res)=>{
+  const employeKittens = await EmployeeModel.findById(req.params.id)
+  res.json(employeKittens)
+})
+
+app.patch("/kittens/:id", async(req, res, next)=>{
+  try {
+    const kittens = await EmployeeModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { ...req.body } },
+      { new: true }
+    );
+    return res.json(kittens);
+  } catch (err) {
+    return next(err);
+  }
+})
+
 //-------------------------- Own Practice-----------------------
 
 

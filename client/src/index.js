@@ -18,6 +18,9 @@ import EquipmentUpdater from "./Pages/EquipmentUpdater";
 //PA
 import Experience from "./Pages/Experience";
 
+//Own
+import Kittens from "./Pages/Kittens";
+
 import "./index.css";
 import TableTest from "./Pages/TableTest";
 import FormTest from "./Pages/FormTest";
@@ -83,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "/search/:id",
         element: <SearchField />,
+      },
+      {
+        path: "/kittens/:id",
+        element: <Kittens />,
       },
     ],
   },
