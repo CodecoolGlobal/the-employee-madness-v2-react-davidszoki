@@ -33,6 +33,7 @@ const EmployeeList = ({ path }) => {
 
   // console.log(location.pathname);
   useEffect(() => {
+  
     // fetchEmployees()
     //   .then((employees) => {
     //     setLoading(false);
@@ -70,7 +71,7 @@ const EmployeeList = ({ path }) => {
   }
   return <>
     <Navbar />
-    <EmployeeTable employees={employees} onDelete={handleDelete} />
+    <EmployeeTable employees={employees} onDelete={handleDelete}/>
   </>;
 };
 

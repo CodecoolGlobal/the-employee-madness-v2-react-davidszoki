@@ -6,7 +6,12 @@ const { Schema } = mongoose;
 const EmployeeSchema = new Schema({
   name: String,
   level: String,
-  position: String,
+  position: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"Position"
+  },
+
+  
   created: {
     type: Date,
     default: Date.now,

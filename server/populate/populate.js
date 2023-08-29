@@ -9,6 +9,7 @@ const positions = require("./positions.json");
 const brands = require("./brand.json");
 const EmployeeModel = require("../db/employee.model");
 const FavBrands = require("../db/brand.model")
+const Positions = require("../db/positions.model")
 
 const mongoUrl = process.env.MONGO_URL;
 
@@ -42,12 +43,12 @@ const pick = (from) => from[Math.floor(Math.random() * (from.length - 0))];
 
 const populateEmployees = async () => {
   await EmployeeModel.deleteMany({});
-  await favBrandsEmployees();
+  await PaPosition();
 
   const employees = names.map((name) => ({
     name,
     level: pick(levels),
-    position: pick(positions),
+    // position: pick(positions),
     //brand: pick(brands), // This should be an ObjectId reference, not just a brand name
     startDate: getRandomDate("2010-01-01","2020-12-31"),
     currentSalary: getRandomSalary(20, 60),
@@ -60,11 +61,11 @@ const populateEmployees = async () => {
   await Promise.all(
     employees.map(async (employee) => {
       try {
-        const favBrand = await FavBrands.findOne({ name: employee.brand });
-        if (favBrand) {
-          employee.brand = favBrand._id; // name-t nem fogadja el valamiért
+        const posi = await Positions.findOne({ name: employee.position });
+        if (posi) {
+          employee.position = posi._id; // name-t nem fogadja el valamiért
         } else {
-          console.log(`Brand not found: ${employee.brand}`);
+          console.log(`Brand not found: ${employee.position}`);
         }
       } catch (error) {
         console.error(error);
@@ -84,7 +85,18 @@ const favBrandsEmployees = async () => {
   }))
 
   await FavBrands.create(...favBrand)
-  console.log("favBrand Added");
+}
+
+const PaPosition = async () => {
+  await Positions.deleteMany({});
+
+  const paPosition = positions.map((posiName)=>({
+    name: posiName.name,
+    salary: posiName.salary
+  }))
+  console.log(paPosition);
+  await Positions.create(...paPosition)
+  console.log("position added");
 }
 
 const main = async () => {

@@ -72,3 +72,6 @@ Content-Type:  application/json
   {"name":"Tuluz","weight":0.45}
 ]
 }
+
+###
+GET http://localhost:8080/api/position

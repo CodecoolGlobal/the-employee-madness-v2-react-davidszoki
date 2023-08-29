@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [name, setName] = useState(employee?.name ?? "");
@@ -32,21 +32,21 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 
 
   //Optional task
-  // const [brandOptions, setBrandOptions] = useState([])
+  const [posiOption, setPosiOption] = useState([])
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const response = await fetch("/api/brands");
-  //       const data = await response.json();
-  //       setBrandOptions(data); // Assuming data is an array of brand objects
-  //     } catch (error) {
-  //       console.error("Error fetching brands:", error);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
-
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("/api/position");
+        const data = await response.json();
+        setPosiOption(data); // Assuming data is an array of brand objects
+      } catch (error) {
+        console.error("Error fetching brands:", error);
+      }
+    }
+    fetchData();
+  }, []);
+  
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -94,12 +94,19 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
 
       <div className="control">
         <label htmlFor="position">Position:</label>
-        <input
-          value={position}
-          onChange={(e) => setPosition(e.target.value)}
-          name="position"
-          id="position"
-        />
+        <select
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+            name="position"
+            id="position"
+          >
+            <option value="">Select a Position</option>
+            {posiOption.map((posi) => (
+              <option key={posi._id} value={posi._id}>
+                {posi.name}
+              </option>
+            ))}
+          </select>
       </div>
 
       <div className="control">

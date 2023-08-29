@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const EmployeeModel = require("./db/employee.model");
 const EquipmentModel = require("./db/equipment.model")
 const FavBrands = require("./db/brand.model")
+const Positions = require("./db/positions.model")
 const cors = require('cors');
 
 const { MONGO_URL, PORT = 8080 } = process.env;
@@ -36,6 +37,12 @@ app.get("/years-of-experience/:id", async(req,res)=>{
   const id = req.params.id
   const modelExperince = await EmployeeModel.find({yearsOfEx: {$gt: id} })
   res.json(modelExperince)
+})
+
+
+app.get("/api/position", async(req, res)=>{
+  const position = await Positions.find();
+  res.json(position);
 })
 //--------------------------- PA -------------------------------
 

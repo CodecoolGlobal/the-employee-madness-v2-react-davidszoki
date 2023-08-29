@@ -17,6 +17,7 @@ import EquipmentUpdater from "./Pages/EquipmentUpdater";
 
 //PA
 import Experience from "./Pages/Experience";
+import Positions from "./Pages/Positions";
 
 //Own
 import Kittens from "./Pages/Kittens";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <EmployeeList path="/"/>,
+      },
+      {
+        path: "/positions",
+        element: <Positions path="/positions"/>,
       },
       {
         path: "/years-of-experience/:id",
